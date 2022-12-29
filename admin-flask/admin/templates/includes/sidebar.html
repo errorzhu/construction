@@ -1,0 +1,79 @@
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/" class="brand-link">
+      <span class="brand-text font-weight-light">demo管理</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+
+      <!-- SidebarSearch Form 不能删，删了影响子菜单展开-->
+
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview {% if 'index' in segment %} menu-open {% endif %}">
+            <a href="#" class="nav-link {% if 'index' in segment %} active {% endif %}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                带子项菜单
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/index" class="nav-link {% if 'index' in segment %} active {% endif %}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>子项1</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="chart" class="nav-link {% if 'chart' == segment %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                chartjs图表
+              </p>
+            </a>
+          </li>
+            <li class="nav-item">
+            <a href="chart2" class="nav-link {% if 'chart2' in segment %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                echart图表
+              </p>
+            </a>
+          </li>
+            <li class="nav-item">
+            <a href="table" class="nav-link {% if 'table' in segment %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                表格
+              </p>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  

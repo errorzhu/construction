@@ -1,0 +1,164 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} 图表 {% endblock %}
+
+<!-- Element injected in the BODY element -->
+{% block body_class %} sidebar-mini {% endblock body_class %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/static/assets/plugins/fontawesome-free/css/all.min.css">
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/static/assets/css/adminlte.min.css">
+
+{% endblock stylesheets %}
+
+{% block content %}
+
+ <div class="content-wrapper">
+
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0 text-dark">图表</h1>
+				</div><!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item">
+							<a href="#">首页</a>
+						</li>
+						<li class="breadcrumb-item active">图表</li>
+					</ol>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.container-fluid -->
+	</div>
+	<!-- /.content-header -->
+
+	<!-- Main content -->
+	<div class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="card">
+						<div class="card-header border-0">
+							<div class="d-flex justify-content-between">
+								<h3 class="card-title">图表1</h3>
+							</div>
+						</div>
+						<div class="card-body">
+
+							<div class="position-relative mb-4">
+								<div id="world-map" style="height: 200px;" ></div>
+							</div>
+
+						</div>
+					</div>
+					<!-- /.card -->
+
+                    <!-- 新图+card -->
+					<!-- /.card -->
+				</div>
+				<!-- /.col-md-6 -->
+				<div class="col-lg-6">
+					<div class="card">
+						<div class="card-header border-0">
+							<div class="d-flex justify-content-between">
+								<h3 class="card-title">图表2</h3>
+							</div>
+						</div>
+						<div class="card-body">
+
+							<div class="position-relative mb-4">
+								<div id="bar1" style="height:200px;"></div>
+							</div>
+
+
+						</div>
+					</div>
+					<!-- /.card -->
+
+				</div>
+				<!-- /.col-md-6 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container-fluid -->
+	</div>
+	<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+    <!-- jQuery -->
+    <script src="/static/assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE -->
+    <script src="/static/assets/js/adminlte.js"></script>
+
+    <!-- OPTIONAL SCRIPTS -->
+
+    <script src="/static/assets/plugins/echarts/echarts.min.js"></script>
+    <script src="/static/assets/plugins/echarts/china.js"></script>
+    <script src="/static/assets/plugins/echarts/world.js"></script>
+
+
+
+<script>
+	// 基于准备好的dom，初始化echarts实例
+	var barChart = echarts.init(document.getElementById('bar1'));
+
+	// 指定图表的配置项和数据
+	var option = {
+		title: {
+			text: '柱状图'
+		},
+		tooltip: {},
+		legend: {
+			data: {{ data.pic1.label|tojson }}
+		},
+		xAxis: {
+			data: {{ data.pic1.value1|tojson }}
+		},
+		yAxis: {},
+		series: [{
+			name: {{ data.pic1.label|tojson }}[0],
+			type: 'bar',
+			data: {{ data.pic1.value2|tojson }}
+		}]
+	};
+
+	// 使用刚指定的配置项和数据显示图表。
+	barChart.setOption(option);
+
+	var myChart = echarts.init(document.getElementById("world-map"));
+	let option2 = {
+		tooltip: {
+			trigger: "item",
+		},
+		series: [{
+			type: "map",
+			map: 'china',
+			// 引入地图数据
+			data: {{ data.pic2.value|tojson }}
+		},
+		],
+	};
+	myChart.setOption(option2);
+</script>
+
+{% endblock javascripts %}
